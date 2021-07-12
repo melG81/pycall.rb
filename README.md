@@ -32,12 +32,6 @@ pyenv does not build the shared library in default, so you need to specify `--en
 $ env PYTHON_CONFIGURE_OPTS='--enable-shared' pyenv install 3.7.2
 ```
 
-## Note for Windows users
-
-Currently, pycall.rb does not support Windows.  Please try to use pycall.rb on WSL2 environment.
-
-On Windows, the error "[BUG] object allocation during garbage collection phase" is occurred at unpredictable timings.
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -59,9 +53,8 @@ Or install it yourself as:
 Here is a simple example to call Python's `math.sin` function and compare it to
 the `Math.sin` in Ruby:
 
-    require 'pycall/import'
-    include PyCall::Import
-    pyimport :math
+    require 'pycall'
+    math = PyCall.import_module("math")
     math.sin(math.pi / 4) - Math.sin(Math::PI / 4)   # => 0.0
 
 Type conversions from Ruby to Python are automatically performed for numeric,
