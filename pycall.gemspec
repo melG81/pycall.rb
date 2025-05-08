@@ -1,17 +1,10 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'pycall/version'
+
+require_relative 'lib/pycall/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "pycall"
-  version_components = [
-    PyCall::Version::MAJOR.to_s,
-    PyCall::Version::MINOR.to_s,
-    PyCall::Version::MICRO.to_s,
-    PyCall::Version::TAG,
-  ]
-  spec.version       = version_components.compact.join(".")
+  spec.version       = PyCall::VERSION
   spec.authors       = ["Kenta Murata"]
   spec.email         = ["mrkn@mrkn.jp"]
 
@@ -43,7 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake-compiler-dock"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "launchy"
-  spec.add_development_dependency "pry"
-  spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "test-unit"
 end

@@ -3,14 +3,9 @@ name: CI
 on:
   push:
     branches:
-    - master
-    - "check/ci/**"
-    - "check/unix/**"
+    - "**"
+    - '!dependabot/**'
   pull_request:
-    types:
-    - opened
-    - synchronize
-    - reopened
 
 jobs:
   test:
@@ -66,7 +61,7 @@ jobs:
         #- { os: macos-latest   , ruby: debug , python: "3.x" , python_architecture: x64 , venv: "" }
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 1
 
@@ -75,7 +70,7 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
 
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python }}
         architecture: ${{ matrix.python_architecture }}
@@ -117,11 +112,11 @@ jobs:
         - "3.10"
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 1
 
-    - uses: conda-incubator/setup-miniconda@v2
+    - uses: conda-incubator/setup-miniconda@v3
       with:
         activate-environment: test
         python-version: ${{ matrix.python }}
